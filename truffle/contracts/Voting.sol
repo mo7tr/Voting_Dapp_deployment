@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.13;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
+import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
 contract Voting is Ownable {
 
@@ -69,17 +69,6 @@ contract Voting is Ownable {
         workflowStatus = WorkflowStatus.VotingSessionStarted;
         emit WorkflowStatusChange(WorkflowStatus.ProposalsRegistrationEnded, WorkflowStatus.VotingSessionStarted);
     }
-
-    function vote(uint proposalId) public flowStatus(WorkflowStatus.VotingSessionStarted) {
-        require(voters[msg.sender].isRegistered, "You are not allowed to vote");
-        require(!voters[msg.sender].hasVoted, "You have already voted");
-        proposals[proposalId].voteCount += 1;
-        voters[msg.sender].hasVoted = true;
-        voters[msg.sender].votedProposalId = proposalId;
-
-        emit Voted(msg.sender, proposalId);
-    }
-
 
     function vote(uint proposalId) public flowStatus(WorkflowStatus.VotingSessionStarted) {
         require(voters[msg.sender].isRegistered, "You are not allowed to vote");
