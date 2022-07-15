@@ -1,0 +1,63 @@
+{
+  "author": "Alyra Web3 training school",
+  "custom:experimental": "This is an experimental contract used in a teachable environment",
+  "details": "Owner has the ability to change workflow status and go deeper in the voting process after adding new addresses as potential voters",
+  "kind": "dev",
+  "methods": {
+    "endProposalsRegistration()": {
+      "custom:requirement": "WorkflowStatus must be on ProposalsRegistrationStarted to be able to change WorkflowStatus to ProposalsRegistrationEnded",
+      "details": "Change enum WorkflowStatus to ProposalsRegistrationEnded "
+    },
+    "endVotingSession()": {
+      "custom:requirement": "WorkflowStatus must be on VotingSessionStarted to be able to change WorkflowStatus to VotingSessionEnded",
+      "details": "Change enum WorkflowStatus to VotingSessionEnded and finish the voting process by setting up the final state of uint winningProposalId"
+    },
+    "getWinner()": {
+      "custom:requirement": "WorkflowStatus must be on VotingSessionEnded to be able to get the winning Proposal",
+      "details": "Retrieves the value of the winning struct Proposal in proposals array ( == proposals[winningProposalId])",
+      "returns": {
+        "_0": "Proposal Struct from proposals array that won the vote with string description and uint voteCount"
+      }
+    },
+    "owner()": {
+      "details": "Returns the address of the current owner."
+    },
+    "registerProposals(string)": {
+      "custom:requirement": "WorkflowStatus must be on ProposalsRegistrationStarted to be abble to add new Proposal",
+      "details": "Add a new struct Proposal in proposals array with string description set as the parameter _proposalDescription and uint voteCount set to 0",
+      "params": {
+        "_proposalDescription": "The description (string) of the Proposal you want to add to voting choice"
+      }
+    },
+    "registerVoters(address)": {
+      "custom:requirement": "WorkflowStatus must be on RegisteringVoters to be able to add new voters",
+      "details": "This function allow owner to modify the boolean isRegistered to true inside struct Voter in the the mapping Voters",
+      "params": {
+        "_voterAddress": "The address of the user you want to add to the voters list"
+      }
+    },
+    "renounceOwnership()": {
+      "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+    },
+    "startProposalsRegistration()": {
+      "custom:requirement": "WorkflowStatus must be on RegisteringVoters to be able to change WorkflowStatus to ProposalsRegistrationStarted",
+      "details": "Change enum WorkflowStatus to ProposalsRegistrationStarted "
+    },
+    "startVotingSession()": {
+      "custom:requirement": "WorkflowStatus must be on ProposalsRegistrationEnded to be able to change WorkflowStatus to VotingSessionStarted",
+      "details": "Change enum WorkflowStatus to VotingSessionStarted "
+    },
+    "transferOwnership(address)": {
+      "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+    },
+    "vote(uint256)": {
+      "custom:requirement": "WorkflowStatus must be on VotingSessionStarted to be able to vote",
+      "details": "This function increment the uint voteCount inside the struct Voter of the the proposals array index choosen by _proposalId parameter",
+      "params": {
+        "_proposalId": "The uint of the Proposal you want to vote for"
+      }
+    }
+  },
+  "title": "A voting system smart contract",
+  "version": 1
+}

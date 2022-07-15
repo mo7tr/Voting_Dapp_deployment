@@ -1,0 +1,31 @@
+{
+  "kind": "user",
+  "methods": {
+    "endProposalsRegistration()": {
+      "notice": "Give the owner the ability to end the proposals registering process"
+    },
+    "endVotingSession()": {
+      "notice": "Give the owner the ability to end the voting process and then the winner is setted and getWinner is usable"
+    },
+    "getWinner()": {
+      "notice": "Give the ability to check which Proposal won the election"
+    },
+    "registerProposals(string)": {
+      "notice": "Give the registered voters the ability to add new proposal "
+    },
+    "registerVoters(address)": {
+      "notice": "Give the owner the ability to register new voters allowing them to make proposals and to vote"
+    },
+    "startProposalsRegistration()": {
+      "notice": "Give the owner the ability to start the proposals registering process for eligible voters"
+    },
+    "startVotingSession()": {
+      "notice": "Give the owner the ability to start the voting process"
+    },
+    "vote(uint256)": {
+      "notice": "Give the registered voters the ability to vote for a Proposal according to its ID"
+    }
+  },
+  "notice": "You can use this contract to create a voting process supervised by an administrator",
+  "version": 1
+}
