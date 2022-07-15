@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.13;
+pragma solidity 0.8.15;
 
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
@@ -41,10 +41,6 @@ contract Voting is Ownable {
     event ProposalRegistered(uint _proposalId);
     event Voted (address _voter, uint _proposalId);
 
-    /** @notice Give an access level to functions according to evolution of voting process
-      * @param _status The WorkflowStatus you need to use this function
-      * @dev Restrict access to functions in case users aren't using proper function according to evolution of voting process
-      */
     modifier flowStatus(WorkflowStatus _status) {
         require(workflowStatus == _status, "You are not able to do this action right now");
         _;
